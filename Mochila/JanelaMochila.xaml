@@ -1,0 +1,22 @@
+<Window x:Class="Mascote.Mochila.JanelaMochila"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Mochila do mascote" Width="560" Height="460" MinWidth="420" MinHeight="300"
+        WindowStartupLocation="CenterScreen" Topmost="True" FontFamily="Segoe UI" FontSize="13" Background="#F6F3EF">
+  <DockPanel Margin="12">
+    <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" Foreground="#555" Margin="0,0,0,8"
+               Text="Arraste um item para fora (para a área de trabalho ou uma pasta) para tirá-lo da mochila. Duplo clique abre."/>
+    <DockPanel DockPanel.Dock="Bottom" Margin="0,10,0,0">
+      <Button DockPanel.Dock="Right" Content="Fechar" Padding="14,4" IsCancel="True"/>
+      <StackPanel Orientation="Horizontal">
+        <Button Content="Abrir" Padding="12,4" Margin="0,0,6,0" Click="Abrir_Click"/>
+        <Button Content="Mostrar na pasta" Padding="12,4" Margin="0,0,6,0" Click="Mostrar_Click"/>
+        <Button Content="Tirar para..." Padding="12,4" Margin="0,0,6,0" Click="Tirar_Click"/>
+        <Button Content="Jogar fora" Padding="12,4" Click="Lixo_Click"/>
+      </StackPanel>
+    </DockPanel>
+    <TextBlock x:Name="Resumo" DockPanel.Dock="Bottom" Foreground="#777" FontSize="12" Margin="0,6,0,0" TextTrimming="CharacterEllipsis"/>
+    <ListBox x:Name="Lista" SelectionMode="Extended" AllowDrop="True" MouseDoubleClick="Abrir_Click"
+             PreviewMouseLeftButtonDown="Lista_BotaoDesce" PreviewMouseMove="Lista_MouseMove" Drop="Lista_Drop"/>
+  </DockPanel>
+</Window>

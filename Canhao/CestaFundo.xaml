@@ -1,0 +1,12 @@
+<!-- Cesta de lado numa caixa 140x150: tabela à direita, aro centrado em (79; 71,5) com raios 41 x 5,5.
+     Esta é a parte que fica ATRÁS do mascote: tabela, suporte e a metade de trás do aro. -->
+<Canvas x:Class="Mascote.Canhao.CestaFundo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Width="140" Height="150">
+  <Path Data="M 122,76 L 110,76 L 114,68" Stroke="#616161" StrokeThickness="4" StrokeLineJoin="Round"/>
+  <Rectangle Canvas.Left="122" Canvas.Top="8" Width="13" Height="94" RadiusX="2" RadiusY="2" Fill="White" Stroke="#37474F" StrokeThickness="3"/>
+  <Rectangle Canvas.Left="125.5" Canvas.Top="46" Width="6" Height="28" Stroke="#E53935" StrokeThickness="2.5"/>
+  <Path Data="M 38,71.5 A 41,5.5 0 0 1 120,71.5" Stroke="#BF360C" StrokeThickness="6"/>
+  <Path Data="M 38,71.5 A 41,5.5 0 0 1 120,71.5" Stroke="#E65100" StrokeThickness="3.5"/>
+</Canvas>

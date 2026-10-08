@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Mascote</RootNamespace>
+    <AssemblyName>Mascote</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- A pasta Dados é de quem roda o programa (criada sozinha na primeira execução) e não faz parte do projeto -->
+    <None Remove="Dados\**;publicar\**" />
+    <!-- O pato de exemplo vai dentro do executável e é gravado em Dados\personagens quando não há nenhum personagem -->
+    <None Remove="Recursos\Pato\**" />
+    <EmbeddedResource Include="Recursos\Pato\*" LogicalName="Pato/%(Filename)%(Extension)" />
+  </ItemGroup>
+
+</Project>

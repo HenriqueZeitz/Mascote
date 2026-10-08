@@ -1,0 +1,20 @@
+<Window x:Class="Mascote.Clima.JanelaConfigClima"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Configurar clima" Width="420" SizeToContent="Height" ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen" Topmost="True" FontFamily="Segoe UI" FontSize="13">
+  <StackPanel Margin="14">
+    <TextBlock Text="Sua cidade"/>
+    <DockPanel Margin="0,4,0,8">
+      <Button x:Name="BtnBuscar" DockPanel.Dock="Right" Content="Buscar" Padding="12,3" Margin="6,0,0,0" IsDefault="True" Click="Buscar_Click"/>
+      <TextBox x:Name="TxtCidade" Padding="3"/>
+    </DockPanel>
+    <ListBox x:Name="Lista" Height="150" MouseDoubleClick="Lista_DuploClique"/>
+    <TextBlock x:Name="Info" Foreground="#777" FontSize="11" TextWrapping="Wrap" Margin="0,6,0,10"
+               Text="Digite o nome da cidade e clique em Buscar. Depois escolha a certa na lista."/>
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+      <Button x:Name="BtnOk" Content="Salvar" Padding="16,4" Margin="0,0,8,0" IsEnabled="False" Click="Salvar_Click"/>
+      <Button Content="Cancelar" Padding="12,3" IsCancel="True"/>
+    </StackPanel>
+  </StackPanel>
+</Window>

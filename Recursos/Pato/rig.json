@@ -1,0 +1,89 @@
+{
+    "nome":  "pato",
+    "largura":  241,
+    "altura":  244,
+    "alturaTela":  64,
+    "olhando":  "direita",
+    "base":  "base.png",
+    "original":  "original.png",
+    "partes":  [
+                   {
+                       "papel":  "cabeca",
+                       "forma":  "ret",
+                       "x":  80,
+                       "y":  -5,
+                       "w":  158,
+                       "h":  154,
+                       "pivoX":  130.32562780641942,
+                       "pivoY":  141,
+                       "preencher":  false,
+                       "pai":  -1,
+                       "arquivo":  "parte_0.png"
+                   },
+                   {
+                       "papel":  "olhos",
+                       "forma":  "ret",
+                       "x":  129,
+                       "y":  48,
+                       "w":  74,
+                       "h":  56,
+                       "pivoX":  166,
+                       "pivoY":  76,
+                       "preencher":  true,
+                       "pai":  0,
+                       "arquivo":  "parte_1.png"
+                   },
+                   {
+                       "papel":  "pe",
+                       "forma":  "ret",
+                       "x":  46,
+                       "y":  219,
+                       "w":  76,
+                       "h":  28,
+                       "pivoX":  84,
+                       "pivoY":  224,
+                       "preencher":  false,
+                       "pai":  -1,
+                       "arquivo":  "parte_2.png"
+                   },
+                   {
+                       "papel":  "pe",
+                       "forma":  "ret",
+                       "x":  118,
+                       "y":  215,
+                       "w":  62,
+                       "h":  32,
+                       "pivoX":  149,
+                       "pivoY":  220,
+                       "preencher":  false,
+                       "pai":  -1,
+                       "arquivo":  "parte_3.png"
+                   },
+                   {
+                       "papel":  "braco",
+                       "forma":  "ret",
+                       "x":  47,
+                       "y":  154,
+                       "w":  70,
+                       "h":  46,
+                       "pivoX":  98.800000000000011,
+                       "pivoY":  170.6,
+                       "preencher":  true,
+                       "pai":  -1,
+                       "arquivo":  "parte_4.png"
+                   },
+                   {
+                       "papel":  "cauda",
+                       "forma":  "ret",
+                       "x":  5,
+                       "y":  111,
+                       "w":  50,
+                       "h":  46,
+                       "pivoX":  47,
+                       "pivoY":  136.37590361445783,
+                       "preencher":  false,
+                       "pai":  -1,
+                       "arquivo":  "parte_5.png"
+                   }
+               ]
+}
