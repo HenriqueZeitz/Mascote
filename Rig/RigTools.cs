@@ -252,7 +252,7 @@ public static class RigTools
     }
 
     static int Prio(string p) {
-      switch (p) { case "olhos": return 0; case "braco": return 1; case "pe": return 2; case "cauda": return 3; case "cabeca": return 4; default: return 5; }
+      switch (p) { case "olhos": case "boca": return 0; case "braco": return 1; case "pe": return 2; case "cauda": return 3; case "cabeca": return 4; default: return 5; }
     }
 
     // Recorta cada membro numa camada (parte_N.png) e o que sobra vira o corpo (base.png)

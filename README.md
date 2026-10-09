@@ -8,6 +8,8 @@ Feito em C# com WPF (.NET 10). Só funciona no Windows.
 ## O que ele faz
 
 - **Passeia sozinho**: anda, para, respira, pisca e solta uma frase de tempos em tempos. Funciona em vários monitores.
+- **Mexe a boca ao falar**: o tempo é calculado pelo texto, 1 segundo para cada 8 letras (mínimo de 0,4 s). A boca fecha nos
+  espaços e na pontuação e abre mais nas vogais. Personagens sem a boca marcada no editor mexem a cabeça no lugar.
 - **Clique e arraste**: leva o mascote para outro lugar. Solto de perto do chão, ele cai; solto do alto, desce de guarda-chuva.
 - **Duplo clique**: pula e fala uma das frases do personagem.
 - **Botão direito**: abre o menu com todo o resto.
@@ -59,6 +61,8 @@ Cada personagem é uma pasta em `Dados\personagens`, criada pelo **Editor de per
 2. Confira e ajuste os membros. Arraste no desenho para marcar a área de um membro, em um de três formatos:
    retângulo, elipse ou **contorno livre** (você contorna o membro e o laço fecha ao soltar).
    O botão direito põe o ponto de giro, que é onde o membro se prende ao corpo.
+   Para a **boca**, marque a parte que deve abrir (a de baixo, como a mandíbula ou o bico de baixo): ela estica para baixo
+   a partir do ponto de giro, que fica no lábio de cima. A prévia *falando* mostra o personagem dizendo as frases dele.
 3. Escreva as **frases do personagem**, uma por linha. Um personagem novo já vem com uma lista padrão.
 4. Salve. Se for o personagem em uso, o mascote se atualiza sozinho em instantes.
 

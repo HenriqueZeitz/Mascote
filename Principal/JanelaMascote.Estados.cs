@@ -59,7 +59,7 @@ public partial class JanelaMascote
             Estado.GuardaChuva => Pose.Guarda,
             _ => Pose.Parado
         };
-        pers.AplicarPose(pose, t, piscarSegura > 0 || estado == Estado.Desmaiado);   // desmaiado: olhos fechados
+        pers.AplicarPose(pose, t, piscarSegura > 0 || estado == Estado.Desmaiado, AberturaDaBoca());   // desmaiado: olhos fechados
         // se a roleta foi interrompida por outra ação, some com o revólver
         if (arma != null && estado is not (Estado.Roleta or Estado.Desmaiado)) { arma.Remover(); arma = null; }
 

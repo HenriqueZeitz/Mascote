@@ -73,6 +73,9 @@ public partial class JanelaMascote : Window
     int balao;             // quadros até o balão sumir
     int proximaFala;
     bool alerta;           // o balão está mostrando um alerta recebido
+    string falaTexto = ""; // o que ele está dizendo agora (para mexer a boca no ritmo do texto)
+    readonly System.Diagnostics.Stopwatch falaRelogio = new();
+    double boca;           // abertura atual da boca (0..1), suavizada quadro a quadro
 
     // canhão e cesta
     Cesta? cesta;
@@ -198,7 +201,27 @@ public partial class JanelaMascote : Window
         TextoBalao.Text = txt;
         Balao.Background = Brushes.White; Balao.BorderBrush = corBorda; Balao.BorderThickness = new Thickness(1.5);
         Balao.Visibility = Visibility.Visible;
-        balao = 130;
+        balao = Math.Max(130, QuadrosDeFala(txt) + 45);   // o balão fica pelo menos enquanto ele fala (+ 1,5 s para ler)
+        ComecarAFalar(txt);
+    }
+
+    // Começa a mexer a boca: dura TempoDeFala.Segundos(texto) — 1 s para cada 8 letras
+    void ComecarAFalar(string txt) { falaTexto = txt; falaRelogio.Restart(); }
+
+    static int QuadrosDeFala(string txt) => (int)Math.Ceiling(TempoDeFala.Segundos(txt) * 1000 / 33);
+
+    // Abertura da boca neste quadro (suavizada para não "piscar"); fechada fora da fala, desmaiado ou dentro do canhão
+    double AberturaDaBoca()
+    {
+        double alvo = 0;
+        if (falaTexto != "" && estado is not (Estado.Desmaiado or Estado.NoCanhao))
+        {
+            double s = falaRelogio.Elapsed.TotalSeconds;
+            if (s >= TempoDeFala.Segundos(falaTexto)) falaTexto = "";
+            else alvo = TempoDeFala.Abertura(falaTexto, s);
+        }
+        boca += (alvo - boca) * 0.55;
+        return boca < 0.01 ? 0 : boca;
     }
 
     void Falar(params string[] opcoes) => Falar(Sortear(opcoes));
@@ -217,7 +240,8 @@ public partial class JanelaMascote : Window
         Balao.Background = new SolidColorBrush(Color.FromRgb(0xFF, 0xF4, 0xD6));
         Balao.BorderBrush = Brushes.Firebrick; Balao.BorderThickness = new Thickness(2.5);
         Balao.Visibility = Visibility.Visible;
-        alerta = true; balao = 360;
+        alerta = true; balao = Math.Max(360, QuadrosDeFala(msg.Texto) + 60);
+        ComecarAFalar(msg.Texto);   // ele "lê" o alerta em voz alta
         estado = Estado.Pulando; vy = -9;
         SystemSounds.Exclamation.Play();
     }
@@ -225,6 +249,7 @@ public partial class JanelaMascote : Window
     void FecharBalao()
     {
         Balao.Visibility = Visibility.Collapsed; balao = 0; alerta = false;
+        falaTexto = "";   // fechou o balão: para de falar
     }
 
     void Balao_Clique(object sender, MouseButtonEventArgs e) => FecharBalao();
