@@ -17,11 +17,13 @@ public partial class JanelaEditorPersonagem : Window
 {
     static readonly Dictionary<string, string> Cores = new()
     {
-        [Papeis.Cabeca] = "#E53935", [Papeis.Olhos] = "#8E24AA", [Papeis.Braco] = "#1E88E5", [Papeis.Pe] = "#43A047", [Papeis.Cauda] = "#FB8C00"
+        [Papeis.Cabeca] = "#E53935", [Papeis.Olhos] = "#8E24AA", [Papeis.Boca] = "#D81B60", [Papeis.Braco] = "#1E88E5",
+        [Papeis.Pe] = "#43A047", [Papeis.Cauda] = "#FB8C00"
     };
     static readonly Dictionary<string, string> Curtos = new()
     {
-        [Papeis.Cabeca] = "Cabeça", [Papeis.Olhos] = "Olhos", [Papeis.Braco] = "Braço/asa", [Papeis.Pe] = "Pé", [Papeis.Cauda] = "Cauda"
+        [Papeis.Cabeca] = "Cabeça", [Papeis.Olhos] = "Olhos", [Papeis.Boca] = "Boca", [Papeis.Braco] = "Braço/asa", [Papeis.Pe] = "Pé",
+        [Papeis.Cauda] = "Cauda"
     };
 
     readonly string pastaPrevia = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "mascote_previa");
@@ -48,7 +50,8 @@ public partial class JanelaEditorPersonagem : Window
         Opcoes.Adicionar(CmbPapel, Papeis.Nomes);
         Opcoes.Adicionar(CmbForma, [new(Formas.Retangulo, "Retângulo"), new(Formas.Elipse, "Elipse"), new(Formas.Livre, "Contorno livre (laço)")]);
         Opcoes.Adicionar(CmbOlhando, [new(Olhando.Direita, "Direita"), new(Olhando.Esquerda, "Esquerda"), new(Olhando.Frente, "Frente")]);
-        Opcoes.Adicionar(CmbEstado, [new("andar", "Prévia: andando"), new("parado", "Prévia: parado"), new("pular", "Prévia: pulando")]);
+        Opcoes.Adicionar(CmbEstado, [new("andar", "Prévia: andando"), new("parado", "Prévia: parado"), new("pular", "Prévia: pulando"),
+                                     new("falar", "Prévia: falando (as frases abaixo)")]);
         CmbForma.SelectedIndex = 0; CmbOlhando.SelectedIndex = 0; CmbEstado.SelectedIndex = 0;
         ocupado = false;
 
@@ -289,7 +292,7 @@ public partial class JanelaEditorPersonagem : Window
     {
         if (ocupado || sel < 0) return;
         var p = partes[sel]; p.Papel = Opcoes.Selecionada(CmbPapel);
-        if (p.Papel == Papeis.Olhos) p.Preencher = true;
+        if (Papeis.VaiNaCabeca(p.Papel)) p.Preencher = true;   // olhos e boca são desenhados por cima da cabeça
         if (!p.PivoManual) RepositorioPersonagens.PivoPadrao(p, OlhandoEscolhido);
         AtualizarLista(); AtualizarPrevia();
     }
@@ -407,6 +410,20 @@ public partial class JanelaEditorPersonagem : Window
         pulo.Y = y;
         if (piscaSegura > 0) { if (--piscaSegura == 0) pisca = rnd.Next(40, 120); }
         else if (--pisca <= 0) piscaSegura = 4;
-        pers.AplicarPose(pose, t, piscaSegura > 0);
+        pers.AplicarPose(pose, t, piscaSegura > 0, estado == "falar" ? AberturaPrevia() : 0);
+    }
+
+    // "Prévia: falando": diz as frases do personagem uma atrás da outra, com meio segundo de pausa entre elas
+    int fraseDaPrevia;
+    double inicioDaFrase;
+    double AberturaPrevia()
+    {
+        var frases = Frases();
+        if (frases.Count == 0) return 0;
+        double agora = t * 0.033;
+        var frase = frases[fraseDaPrevia % frases.Count];
+        double s = agora - inicioDaFrase;
+        if (s > TempoDeFala.Segundos(frase) + 0.5) { fraseDaPrevia++; inicioDaFrase = agora; s = 0; }
+        return TempoDeFala.Abertura(frase, s);
     }
 }

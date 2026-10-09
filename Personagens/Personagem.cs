@@ -28,6 +28,8 @@ public sealed class Personagem
     public double AlturaTela { get; init; }
     public string Olhando { get; init; } = Personagens.Olhando.Direita;
     public IReadOnlyList<string> Frases { get; init; } = FrasesPadrao.Lista;
+    /// <summary>O personagem tem a boca marcada no editor? Se não, ao falar é a cabeça que se mexe.</summary>
+    public bool TemBoca => Nos.Any(n => n.Papel == Papeis.Boca);
 
     public static Personagem Carregar(string dir)
     {
@@ -67,9 +69,13 @@ public sealed class Personagem
         };
     }
 
-    /// <summary>Anima cada membro conforme o tipo. Chamar a cada quadro (t = contador de quadros).</summary>
-    public void AplicarPose(Pose pose, double t, bool piscando)
+    /// <summary>
+    /// Anima cada membro conforme o tipo. Chamar a cada quadro (t = contador de quadros).
+    /// <paramref name="fala"/>: quanto a boca está aberta agora (0 = fechada, 1 = toda aberta; ver TempoDeFala).
+    /// </summary>
+    public void AplicarPose(Pose pose, double t, bool piscando, double fala = 0)
     {
+        bool temBoca = TemBoca;
         int lado = Olhando == Personagens.Olhando.Esquerda ? -1 : 1;
         bool frente = Olhando == Personagens.Olhando.Frente;
         bool olhar = pose == Pose.Olhar;        // 'olhar' = parado, mas com a cabeça inclinada para baixo
@@ -87,9 +93,16 @@ public sealed class Personagem
                         Pose.Guarda => Math.Sin(t * 0.05) * 6,   // olha em volta enquanto desce
                         _ => -5 * lado
                     };
+                    // sem boca marcada: a cabeça "fala" (estica um pouquinho a partir do pescoço a cada sílaba)
+                    n.Escala.ScaleY = temBoca ? 1 : 1 + fala * 0.06;
                     break;
                 case Papeis.Olhos:
                     n.Escala.ScaleY = piscando ? 0.1 : 1;
+                    break;
+                case Papeis.Boca:
+                    // abre para baixo a partir do lábio de cima (o ponto de giro) e afina um pouco ao abrir
+                    n.Escala.ScaleY = 1 + fala * 0.65;
+                    n.Escala.ScaleX = 1 - fala * 0.08;
                     break;
                 case Papeis.Braco:
                     int sg = n.Fase == 1 && frente ? -1 : 1;   // de frente, os braços se espelham

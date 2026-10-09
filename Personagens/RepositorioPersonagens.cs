@@ -45,6 +45,7 @@ public static class RepositorioPersonagens
         {
             case Papeis.Cabeca: p.PX = x + w / 2; p.PY = y + h * 0.9; break;
             case Papeis.Olhos: p.PX = x + w / 2; p.PY = y + h / 2; break;
+            case Papeis.Boca: p.PX = x + w / 2; p.PY = y; break;   // no lábio de cima: a boca abre para baixo
             case Papeis.Pe: p.PX = x + w / 2; p.PY = y; break;
             case Papeis.Braco:
                 if (olhando == Olhando.Direita) { p.PX = x + w * 0.8; p.PY = y + h * 0.3; }
@@ -69,7 +70,7 @@ public static class RepositorioPersonagens
         for (int i = 0; i < partes.Count; i++)
         {
             var p = partes[i]; int pai = -1;
-            if (p.Papel == Papeis.Olhos)   // olhos acompanham a cabeça que os contém
+            if (Papeis.VaiNaCabeca(p.Papel))   // olhos e boca acompanham a cabeça que os contém
             {
                 double cx = p.X + p.W / 2, cy = p.Y + p.H / 2;
                 for (int j = 0; j < partes.Count; j++)
