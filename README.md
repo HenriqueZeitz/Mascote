@@ -49,8 +49,9 @@ Como o executável não é assinado, o Windows pode mostrar o aviso do SmartScre
 
 ## Personagens
 
-O mascote vem com um personagem, o **Pato**, que fica embutido no executável (pasta `Recursos\Pato` do projeto).
-Ele é instalado quando não há nenhum personagem e é o usado enquanto você não escolhe outro em *Trocar personagem*.
+O mascote vem com dois personagens, o **Pato** e a **Lontra**, embutidos no executável (pastas `Recursos\Pato` e `Recursos\Lontra` do projeto).
+O pato é instalado quando não há nenhum personagem e é o usado enquanto você não escolhe outro em *Trocar personagem*.
+A lontra é instalada junto (e também para quem já usava o mascote, se ainda não estiver em `Dados`); é só escolhê-la no mesmo menu.
 
 Cada personagem é uma pasta em `Dados\personagens`, criada pelo **Editor de personagens**:
 
@@ -99,7 +100,7 @@ os dados vão para `%LOCALAPPDATA%\Mascote\Dados`.
 | `Alertas\`, `Clima\`, `Canhao\`, `Mochila\`, `Roleta\` | Uma pasta por funcionalidade, com o serviço, os desenhos em XAML e as janelas |
 | `Interop\` | Chamadas diretas ao Windows: janela sempre no topo, monitores, relógio da barra de tarefas, ícones |
 | `Nucleo\` | Caminhos, `config.json`, leitura e gravação de JSON e as frases padrão |
-| `Recursos\Pato\` | O personagem padrão, embutido no executável |
+| `Recursos\` | Os personagens embutidos no executável: Pato (o padrão) e Lontra |
 
 O clima vem do [Open-Meteo](https://open-meteo.com/), que é gratuito e não pede cadastro.
 

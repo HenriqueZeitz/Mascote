@@ -16,6 +16,9 @@
     <!-- O pato de exemplo vai dentro do executável e é gravado em Dados\personagens quando não há nenhum personagem -->
     <None Remove="Recursos\Pato\**" />
     <EmbeddedResource Include="Recursos\Pato\*" LogicalName="Pato/%(Filename)%(Extension)" />
+    <!-- A lontra também vai embutida e é gravada em Dados\personagens quando ainda não existe lá -->
+    <None Remove="Recursos\Lontra\**" />
+    <EmbeddedResource Include="Recursos\Lontra\*" LogicalName="Lontra/%(Filename)%(Extension)" />
   </ItemGroup>
 
 </Project>
