@@ -1,0 +1,102 @@
+{
+  "nome": "lontra",
+  "largura": 259,
+  "altura": 248,
+  "alturaTela": 64,
+  "olhando": "direita",
+  "base": "base.png",
+  "original": "original.png",
+  "partes": [
+    {
+      "papel": "cabeca",
+      "forma": "ret",
+      "x": 60,
+      "y": -2,
+      "w": 199,
+      "h": 152,
+      "pivoX": 144,
+      "pivoY": 136,
+      "preencher": false,
+      "pai": -1,
+      "arquivo": "parte_0.png"
+    },
+    {
+      "papel": "olhos",
+      "forma": "ret",
+      "x": 135,
+      "y": 46,
+      "w": 80,
+      "h": 52,
+      "pivoX": 171,
+      "pivoY": 72,
+      "preencher": true,
+      "pai": 0,
+      "arquivo": "parte_1.png"
+    },
+    {
+      "papel": "pe",
+      "forma": "ret",
+      "x": 48,
+      "y": 216,
+      "w": 76,
+      "h": 32,
+      "pivoX": 86,
+      "pivoY": 220,
+      "preencher": false,
+      "pai": -1,
+      "arquivo": "parte_2.png"
+    },
+    {
+      "papel": "pe",
+      "forma": "ret",
+      "x": 125,
+      "y": 216,
+      "w": 70,
+      "h": 32,
+      "pivoX": 160,
+      "pivoY": 220,
+      "preencher": false,
+      "pai": -1,
+      "arquivo": "parte_3.png"
+    },
+    {
+      "papel": "braco",
+      "forma": "ret",
+      "x": 114,
+      "y": 132,
+      "w": 58,
+      "h": 82,
+      "pivoX": 144,
+      "pivoY": 148,
+      "preencher": true,
+      "pai": -1,
+      "arquivo": "parte_4.png"
+    },
+    {
+      "papel": "cauda",
+      "forma": "ret",
+      "x": -4,
+      "y": 128,
+      "w": 88,
+      "h": 88,
+      "pivoX": 72,
+      "pivoY": 184,
+      "preencher": false,
+      "pai": -1,
+      "arquivo": "parte_5.png"
+    }
+  ],
+  "frases": [
+    "Oi! Passei pra dar um oi :)",
+    "Já bebeu água hoje? Eu vivo nela.",
+    "Salvou o arquivo?",
+    "Hora de esticar as costas, hein?",
+    "Lontras dormem de mãos dadas pra não se perderem. Fica por perto!",
+    "Dá um commit aí, vai.",
+    "Cadê minha pedrinha da sorte?",
+    "Mantém a calma e segue nadando.",
+    "Descansa a vista um pouquinho!",
+    "Tô só passeando por aqui.",
+    "Que dia lindo pra nadar... ou compilar."
+  ]
+}
